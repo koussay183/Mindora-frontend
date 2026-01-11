@@ -13,7 +13,7 @@ import type {
   ApiError,
 } from './types';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/api/quiz';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://mindora-backend-mjdl.onrender.com/api/quiz';
 
 /**
  * Get JWT token from localStorage
