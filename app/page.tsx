@@ -203,11 +203,11 @@ export default function QuizPage() {
           <div className="bg-white rounded-2xl shadow-2xl p-4 sm:p-8 md:p-10">
             {/* Progress Bar */}
             <div className="mb-6 sm:mb-8">
-            <div className="flex items-center justify-between text-[9px] sm:text-xs md:text-sm mb-2">
-              <span className="text-[#4A5568] font-medium uppercase tracking-wide">Question {progress.current}/{progress.total}</span>
-              <span className="text-primary font-bold">{Math.round((Math.min(answers.length, currentQuestionIndex + 1) / progress.total) * 100)}%</span>
+            <div className="flex items-center justify-between text-xs sm:text-sm md:text-sm mb-2">
+              <span className="text-[#4A5568] font-semibold uppercase tracking-wide">Question {progress.current}/{progress.total}</span>
+              <span className="text-primary font-bold text-sm sm:text-base">{Math.round((Math.min(answers.length, currentQuestionIndex + 1) / progress.total) * 100)}%</span>
             </div>
-            <div className="h-2 md:h-3 bg-gray-200 rounded-full overflow-hidden">
+            <div className="h-3 md:h-3 bg-gray-200 rounded-full overflow-hidden">
               <div 
                 className="h-full bg-primary rounded-full transition-all duration-500 ease-out"
                 style={{ width: `${(Math.min(answers.length, currentQuestionIndex + 1) / progress.total) * 100}%` }}
@@ -256,9 +256,9 @@ export default function QuizPage() {
             <button
               onClick={handlePrevious}
               disabled={!canGoPrevious}
-              className="flex-1 flex items-center justify-center gap-1.5 sm:gap-2 px-4 sm:px-6 py-2.5 sm:py-3 md:py-4 rounded-lg sm:rounded-xl font-bold transition-all bg-gray-200 hover:bg-gray-300 text-[#1A202C] disabled:opacity-50 disabled:cursor-not-allowed uppercase text-xs sm:text-xs md:text-sm tracking-wider"
+              className="flex-1 flex items-center justify-center gap-1.5 sm:gap-2 px-4 sm:px-6 py-3 sm:py-3 md:py-4 rounded-lg sm:rounded-xl font-bold transition-all bg-gray-200 hover:bg-gray-300 text-[#1A202C] disabled:opacity-50 disabled:cursor-not-allowed uppercase text-sm sm:text-sm md:text-sm tracking-wider"
             >
-              <ArrowLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+              <ArrowLeft className="w-4 h-4 sm:w-4 sm:h-4" />
               <span>Back</span>
             </button>
 
@@ -266,17 +266,17 @@ export default function QuizPage() {
               <button
                 onClick={handleSubmit}
                 disabled={!selectedOptionId || isSubmitting}
-                className="flex-1 flex items-center justify-center gap-1.5 sm:gap-2 px-4 sm:px-6 py-2.5 sm:py-3 md:py-4 bg-primary text-white rounded-lg sm:rounded-xl font-bold hover:bg-primary-dark transition-all disabled:opacity-50 disabled:cursor-not-allowed uppercase text-xs sm:text-xs md:text-sm tracking-wider"
+                className="flex-1 flex items-center justify-center gap-1.5 sm:gap-2 px-4 sm:px-6 py-3 sm:py-3 md:py-4 bg-primary text-white rounded-lg sm:rounded-xl font-bold hover:bg-primary-dark transition-all disabled:opacity-50 disabled:cursor-not-allowed uppercase text-sm sm:text-sm md:text-sm tracking-wider"
               >
                 {isSubmitting ? (
                   <>
-                    <div className="w-3.5 h-3.5 sm:w-4 sm:h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                    <div className="w-4 h-4 sm:w-4 sm:h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
                     <span>Submitting</span>
                   </>
                 ) : (
                   <>
                     <span>Get Results</span>
-                    <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                    <Sparkles className="w-4 h-4 sm:w-4 sm:h-4" />
                   </>
                 )}
               </button>
@@ -284,10 +284,10 @@ export default function QuizPage() {
               <button
                 onClick={handleNext}
                 disabled={!canGoNext}
-                className="flex-1 flex items-center justify-center gap-1.5 sm:gap-2 px-4 sm:px-6 py-2.5 sm:py-3 md:py-4 bg-primary text-white rounded-lg sm:rounded-xl font-bold hover:bg-primary-dark transition-all disabled:opacity-40 disabled:cursor-not-allowed uppercase text-xs sm:text-xs md:text-sm tracking-wider"
+                className="flex-1 flex items-center justify-center gap-1.5 sm:gap-2 px-4 sm:px-6 py-3 sm:py-3 md:py-4 bg-primary text-white rounded-lg sm:rounded-xl font-bold hover:bg-primary-dark transition-all disabled:opacity-40 disabled:cursor-not-allowed uppercase text-sm sm:text-sm md:text-sm tracking-wider"
               >
                 <span>Next</span>
-                <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                <ArrowRight className="w-4 h-4 sm:w-4 sm:h-4" />
               </button>
             )}
           </div>

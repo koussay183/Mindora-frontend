@@ -28,7 +28,7 @@ export const Header: React.FC = () => {
         <nav className="bg-white rounded-xl shadow-lg px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <span className="text-xl sm:text-2xl font-bold text-[#1A202C] tracking-tight">
+            <span className="text-2xl sm:text-2xl font-bold text-[#1A202C] tracking-tight">
               MINDORA
             </span>
           </Link>
@@ -41,18 +41,18 @@ export const Header: React.FC = () => {
                 {!user?.hasCompletedQuiz && (
                   <Link
                     href="/"
-                    className="flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium transition-all bg-white hover:bg-gray-50 border border-gray-200 text-[#1A202C]"
+                    className="flex items-center gap-1.5 px-3 sm:px-4 py-2.5 sm:py-2 rounded-lg text-sm sm:text-sm font-semibold transition-all bg-white hover:bg-gray-50 border border-gray-200 text-[#1A202C]"
                   >
-                    <Brain className="w-4 h-4" />
+                    <Brain className="w-5 h-5 sm:w-4 sm:h-4" />
                     <span className="hidden sm:inline">Quiz</span>
                   </Link>
                 )}
                 {user?.hasCompletedQuiz && (
                   <Link
                     href="/my-results"
-                    className="flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium transition-all bg-white hover:bg-gray-50 border border-gray-200 text-[#1A202C]"
+                    className="flex items-center gap-1.5 px-3 sm:px-4 py-2.5 sm:py-2 rounded-lg text-sm sm:text-sm font-semibold transition-all bg-white hover:bg-gray-50 border border-gray-200 text-[#1A202C]"
                   >
-                    <FileText className="w-4 h-4" />
+                    <FileText className="w-5 h-5 sm:w-4 sm:h-4" />
                     <span className="hidden sm:inline">Results</span>
                   </Link>
                 )}
@@ -60,10 +60,10 @@ export const Header: React.FC = () => {
                   <span className="hidden md:inline text-xs text-[#718096]">{user?.name}</span>
                   <button
                     onClick={handleLogout}
-                    className="flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium transition-all bg-gray-100 hover:bg-gray-200 text-[#1A202C]"
+                    className="flex items-center gap-1.5 px-3 sm:px-4 py-2.5 sm:py-2 rounded-lg text-sm sm:text-sm font-semibold transition-all bg-gray-100 hover:bg-gray-200 text-[#1A202C]"
                     title="Logout"
                   >
-                    <LogOut className="w-4 h-4" />
+                    <LogOut className="w-5 h-5 sm:w-4 sm:h-4" />
                     <span className="hidden sm:inline">Logout</span>
                   </button>
                 </div>
@@ -73,14 +73,14 @@ export const Header: React.FC = () => {
                 {/* Not Authenticated */}
                 <Link
                   href="/login"
-                  className="flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium transition-all bg-white hover:bg-gray-50 border border-gray-200 text-[#1A202C]"
+                  className="flex items-center gap-1.5 px-3 sm:px-4 py-2.5 sm:py-2 rounded-lg text-sm sm:text-sm font-semibold transition-all bg-white hover:bg-gray-50 border border-gray-200 text-[#1A202C]"
                 >
-                  <User className="w-4 h-4" />
+                  <User className="w-5 h-5 sm:w-4 sm:h-4" />
                   <span className="hidden sm:inline">Login</span>
                 </Link>
                 <Link
                   href="/register"
-                  className="flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium transition-all bg-primary hover:bg-primary-dark text-white shadow-md"
+                  className="flex items-center gap-1.5 px-3 sm:px-4 py-2.5 sm:py-2 rounded-lg text-sm sm:text-sm font-semibold transition-all bg-primary hover:bg-primary-dark text-white shadow-md"
                 >
                   <span>Sign Up</span>
                 </Link>
