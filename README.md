@@ -53,7 +53,12 @@ Modern Next.js frontend for Mindora personality quiz application with JWT authen
 
 2. **Configure environment variables**
    
-   Create a `.env.local` file (already created):
+   Create a `.env.local` file:
+   ```env
+   NEXT_PUBLIC_API_URL=https://mindora-backend-mjdl.onrender.com/api/quiz
+   ```
+   
+   For local development, you can use:
    ```env
    NEXT_PUBLIC_API_URL=http://localhost:3000/api/quiz
    ```
@@ -103,7 +108,7 @@ Modern Next.js frontend for Mindora personality quiz application with JWT authen
 
 ## 🔌 API Integration
 
-The frontend integrates with a NestJS backend running at `http://localhost:3000/api/quiz`
+The frontend integrates with the NestJS backend at `https://mindora-backend-mjdl.onrender.com/api/quiz`
 
 ### Endpoints:
 
@@ -112,7 +117,7 @@ The frontend integrates with a NestJS backend running at `http://localhost:3000/
 3. **POST /submit** - Submit quiz answers
 4. **GET /result/:token** - Retrieve result by token
 
-See the code in `lib/api.ts` for implementation details.
+See the code in [lib/api.ts](lib/api.ts) for implementation details.
 
 ## 💾 LocalStorage
 
@@ -158,14 +163,42 @@ Results are stored locally with the key `mindora_quiz_results`:
 
 ### Vercel (Recommended)
 
-1. Push to GitHub
-2. Import in Vercel dashboard
-3. Set environment variable: `NEXT_PUBLIC_API_URL`
-4. Deploy
+1. **Push to GitHub**
+   ```bash
+   git add .
+   git commit -m "Configure for production deployment"
+   git push origin main
+   ```
+
+2. **Import in Vercel**
+   - Go to [vercel.com](https://vercel.com)
+   - Click "Import Project"
+   - Select your GitHub repository
+   - Vercel will auto-detect Next.js configuration
+
+3. **Environment Variables**
+   The backend URL is already configured in `vercel.json`:
+   ```
+   NEXT_PUBLIC_API_URL=https://mindora-backend-mjdl.onrender.com/api/quiz
+   ```
+   
+   You can also set this in Vercel dashboard:
+   - Go to Project Settings → Environment Variables
+   - Add `NEXT_PUBLIC_API_URL` with the backend URL
+
+4. **Deploy**
+   - Click "Deploy"
+   - Vercel will automatically build and deploy your app
 
 ### Build Command
 ```bash
 npm run build
+```
+
+### Production URL
+After deployment, your app will be available at:
+```
+https://your-project-name.vercel.app
 ```
 
 ## 📝 Project Structure
