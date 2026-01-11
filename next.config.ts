@@ -7,8 +7,6 @@ const nextConfig: NextConfig = {
   },
   // Optimize for production
   compress: true,
-  // Enable SWC minification
-  swcMinify: true,
 };
 
 export default nextConfig;
