@@ -1,26 +1,299 @@
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@font-face {
+  font-family: 'splittext';
+  src: url('/fonts/splittext.woff2') format('woff2'),
+       url('/fonts/splittext.woff') format('woff'),
+       url('/fonts/splittext.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Color Palette */
+  --bg: #FAFBFC;
+  --bg-secondary: #F4F6F8;
+  --primary: #4C51BF;
+  --primary-dark: #3C366B;
+  --accent: #F56565;
+  --text-primary: #1A202C;
+  --text-secondary: #4A5568;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+html {
+  scroll-behavior: smooth;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: 'splittext', 'Space Grotesk', system-ui, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F4F6F8;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #CBD5E0;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #A0AEC0;
+}
+
+/* Selection styling */
+::selection {
+  background: rgba(76, 81, 191, 0.2);
+  color: #1A202C;
+}
+
+/* Focus visible styling */
+*:focus-visible {
+  outline: 2px solid #4C51BF;
+  outline-offset: 2px;
+}
+
+/* Chrome/Metallic Utility Classes */
+@layer utilities {
+  .chrome-accent {
+    position: relative;
+  }
+  
+  .chrome-accent::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, rgba(255,255,255,0.95), rgba(255,255,255,0.6), rgba(255,255,255,0.95));
+    border-radius: 12px 12px 0 0;
+  }
+  
+  .glass-surface {
+    background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  
+  .chrome-border {
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+  
+  .shimmer-effect {
+    background-size: 200% auto;
+    animation: shimmer 2s linear infinite;
+  }
+  
+  .shine-overlay {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .shine-overlay::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    animation: shine-slide 3s infinite;
+  }
+  
+  @keyframes shine-slide {
+    0% { left: -100%; }
+    50%, 100% { left: 100%; }
+  }
+  
+  .text-chrome {
+    background: linear-gradient(90deg, #FFFFFF 0%, #E6E6E6 40%, #FFFFFF 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+/* Component-specific chrome styles */
+@layer components {
+  .btn-chrome {
+    @apply relative inline-flex items-center px-6 py-3 rounded-btn border border-chrome-border bg-black/40 hover:shadow-chrome focus:outline-none transition-all duration-300;
+  }
+  
+  .btn-chrome:hover {
+    @apply bg-white text-text-dark shadow-glow-white border-white;
+  }
+  
+  .btn-chrome:disabled {
+    @apply opacity-40 cursor-not-allowed;
+  }
+  
+  .card-chrome {
+    @apply bg-surface rounded-card p-6 shadow-soft-lg relative overflow-hidden;
+  }
+  
+  .card-chrome::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, rgba(255,255,255,0.95), rgba(255,255,255,0.6), rgba(255,255,255,0.95));
+  }
+  
+  .progress-chrome {
+    @apply h-2 rounded-full bg-white/6 overflow-hidden relative;
+  }
+  
+  .progress-fill {
+    @apply absolute h-full rounded-full;
+    background: linear-gradient(90deg, #FFFFFF 0%, #E6E6E6 50%, #FFFFFF 100%);
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
+  }
+}
+
+/* Animation utilities */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(99, 102, 241, 0.6);
+  }
+}
+
+/* Utility classes */
+.text-glow-indigo {
+  text-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+}
+
+.text-glow-green {
+  text-shadow: 0 0 20px rgba(34, 197, 94, 0.5);
+}
+
+.text-glow-orange {
+  text-shadow: 0 0 20px rgba(249, 115, 22, 0.5);
+}
+
+/* Loading animation */
+.loading-dots::after {
+  content: '...';
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0%, 20% {
+    content: '.';
+  }
+  40% {
+    content: '..';
+  }
+  60%, 100% {
+    content: '...';
+  }
+}
+
+/* Smooth transitions for route changes */
+.page-transition {
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* Trait item animation */
+.trait-item {
+  animation: slideIn 0.5s ease-out backwards;
+}
+
+/* Option button animation */
+.option-button {
+  animation: fadeIn 0.4s ease-out backwards;
+}
+
+/* Shimmer effect for text */
+.animate-shimmer {
+  background-size: 200% auto;
+  animation: shimmer 3s linear infinite;
 }
